@@ -26,4 +26,5 @@ public class MessageConstant {
     public static final String ALREADY_EXISTS = "已存在";
     public static final String NOT_SELECT_DELETE_OBJECT = "未选择删除对象";
     public static final String REDIS_NOT_FOUND = "服务器缓存异常";
+    public static final String DB_NOT_FOUND = "数据库异常";
 }
