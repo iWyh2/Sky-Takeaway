@@ -9,6 +9,7 @@ import com.sky.service.OrderService;
 import com.sky.vo.OrderPaymentVO;
 import com.sky.vo.OrderSubmitVO;
 import com.sky.vo.OrderVO;
+import com.sky.websocket.WebSocketServer;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,8 @@ import javax.annotation.Resource;
 public class OrderController {
     @Resource
     private OrderService orderService;
+
+
 
     /**
      * 用户下单
@@ -84,11 +87,25 @@ public class OrderController {
         return Result.success();
     }
 
+    /**
+     * 再来一单
+     */
     @PostMapping("/repetition/{id}")
     @ApiOperation("再来一单")
     public Result<?> repetition(@PathVariable Long id) {
         log.info("再来一单：{}", id);
         orderService.repetition(id);
+        return Result.success();
+    }
+
+    /**
+     * 用户催单
+     */
+    @GetMapping("/reminder/{id}")
+    @ApiOperation("用户催单")
+    public Result<?> reminder(@PathVariable("id") Long id) {
+        log.info("用户催单：{}", id);
+        orderService.reminder(id);
         return Result.success();
     }
 }
